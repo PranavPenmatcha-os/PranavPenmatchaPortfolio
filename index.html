@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #001122;
+            color: white;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+        header {
+            background-color: #001122;
+            color: white;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transform: none;
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        header p {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            opacity: 1;
+        }
+        header.loaded {
+            opacity: 1;
+        }
+        header.top {
+            top: 0;
+        }
+
+
+        nav a {
+            color: white;
+            margin: 0 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #00aaff;
+        }
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.5rem 1rem;
+            background-color: #001122;
+            border-bottom: 1px solid white;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        section {
+            padding: 3rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        section.loaded {
+            opacity: 1;
+        }
+        section.loaded.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: #00aaff;
+        }
+        section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .project {
+            background-color: #002244;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 5px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .project h3 {
+            color: #00aaff;
+            margin-top: 0;
+        }
+        footer {
+            background-color: #001122;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #333;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        footer.loaded {
+            opacity: 1;
+        }
+        a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pranav Penmatcha</h1>
+        <p>623-850-8488 | pvp6360@nyu.edu | linkedin.com/in/pranav-penmatcha/</p>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#publications">Publications</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <h3>Education</h3>
+        <p>New York University, Sep. 2023 – May 2027<br>
+        Bachelor of Science in Electrical and Computer Engineering (Dean’s List)<br>
+        New York City, New York<br>
+        Relevant Coursework: Data Structures, Object Oriented Programming, Computer Architecture, Signals and Systems, Embedded Systems, Digital Logic, Electronics I, Linear Algebra and Differential Equations, Physics: EMF, Calculus II</p>
+        <h3>Technical Skills</h3>
+        <p>Languages/Frameworks: Python, Java, C, React, SQL, NodeJS, Flask, JavaScript, HTML/CSS<br>
+        Developer Tools: VS Code, Eclipse, Google Cloud Platform, Android Studio<br>
+        Technologies/Frameworks: AWS, Github, Altium, Linux, Jenkins, JUnit, WordPress, KiCAD, OrCAD, Solidworks, Vivado<br>
+        Certifications: Python (PCAP) Certification, Apple Macbook, iPad, iPhone mechanic certification</p>
+    </section>
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="project">
+            <h3>ESX, Empire State Exchange | Full Stack Developer | June 2025 – Present | New York City, New York</h3>
+            <p>• Built out data terminal with backend services for real time betting operations. Implemented RESTFUL APIs and Kafka and Redis based orderbook for real time sports betting.<br>
+            • Collaborated with a cross-functional team to build and maintain databases [MongoDB, NoSQL] for handling thousands of concurrent users with low latency and high data integrity<br>
+            • Created interactive and functional frontend with modern frameworks like REACT working with reusable components from Figma. Integrated modern UI and blazingly fast real time data updates. (Work: <a href="https://www.esxtrade.com/" target="_blank">https://www.esxtrade.com/</a>)</p>
+        </div>
+        <div class="project">
+            <h3>NOCO | Architect Engineer Intern | June 2025 – August 2025 | Phoenix, Arizona</h3>
+            <p>• Developed PCB testing systems and Peak Current Tester using Python, JavaScript, and C++. Built out firmware and developed Embedded Systems UI for real-time processing.<br>
+            • Created automated Battery Cycle Tester with Java backend, to manage a fleet of 100 batteries at once. Implemented statistical data analysis, big data processing, and AI/ML techniques for predictive maintenance.</p>
+        </div>
+        <div class="project">
+            <h3>Teaching Assistant | August 2025 – Present | New York University</h3>
+            <p>Recitation, Grading, Writing, and Webdev TA</p>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Mouse for Parkinson’s | February 2025 - April 2025</h3>
+            <p>• Designed and 3D-printed a Parkinson’s-friendly trackball mouse with ergonomic, stigma-free aesthetics<br>
+            • Programmed custom firmware in C and CircuitPython for smooth, tremor-resistant cursor control.<br>
+            • Developed and soldered a custom PCB integrating buttons, trackball sensor, and microcontroller.</p>
+        </div>
+        <div class="project">
+            <h3>NYU STEP Humanoid | September 2025 - Present</h3>
+            <p>• Designed and integrated PCBs for robotic legs to handle multi-motor control<br>
+            • Prototyped and assembled hardware components using CAD, CNC, and 3D printing.<br>
+            • Understood how to work with NVIDIA Jetson tool and ROS2.</p>
+        </div>
+        <div class="project">
+            <h3>NYU Financial Forecasting Club | January 2024 - Present</h3>
+            <p>• Built high-performance financial modeling systems using Go for concurrent data processing<br>
+            • Integrated Rust for memory-safe algorithmic trading components.</p>
+        </div>
+    </section>
+    <section id="publications">
+        <h2>Publications</h2>
+        <div class="project">
+            <h3>Optimization of GaAs to Si Cross-Bonding with Minimal Thermal Activation and Compression in Ambient Air through NanoBonding</h3>
+            <p>DOI: <a href="https://doi.org/10.13140/RG.2.2.34240.81923" target="_blank">10.13140/RG.2.2.34240.81923</a></p>
+        </div>
+        <div class="project">
+            <h3>GaAs to Si Direct Wafer Bonding at T ≤ 220°C in Ambient Air Via NanoBonding™ and Surface Energy Engineering (SEE)</h3>
+            <p>DOI: <a href="https://doi.org/10.1007/s12633-022-01855-9" target="_blank">10.1007/s12633-022-01855-9</a></p>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Phone: 623-850-8488</p>
+        <p>Email: pvp6360@nyu.edu</p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/pranav-penmatcha/" target="_blank">linkedin.com/in/pranav-penmatcha/</a></p>
+        <p>GitHub: <a href="https://github.com/PranavPenmatcha-os" target="_blank">github.com/PranavPenmatcha-os</a></p>
+    </section>
+    <footer>
+        <p>&copy; 2025 Pranav Penmatcha</p>
+    </footer>
+    <script>
+        window.addEventListener('load', () => {
+            const header = document.querySelector('header');
+            const nav = document.querySelector('nav');
+            setTimeout(() => {
+                header.classList.add('loaded');
+            }, 1000);
+            setTimeout(() => {
+                header.classList.add('top');
+            }, 2000);
+            setTimeout(() => {
+                nav.style.opacity = '1';
+                setTimeout(() => {
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.add('loaded');
+                        section.style.marginTop = header.offsetHeight + 'px';
+                    });
+                    document.querySelector('footer').classList.add('loaded');
+                    document.body.style.overflow = 'auto';
+                    window.scrollTo(0, 0);
+                }, 500);
+            }, 3000);
+        });
+
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('loaded')) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
