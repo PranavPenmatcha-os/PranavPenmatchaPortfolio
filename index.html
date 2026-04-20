@@ -441,38 +441,93 @@
     letter-spacing: 2px;
     margin: 4px 0;
   }
+
+  /* ===== DRAG TIP TOAST ===== */
+  #drag-tip {
+    position: fixed;
+    bottom: 52px;
+    right: 10px;
+    z-index: 9999;
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    box-shadow: 2px 2px 0 #000;
+    width: 220px;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+  #drag-tip.fade-out { opacity: 0; pointer-events: none; }
+  #drag-tip .tip-titlebar {
+    background: linear-gradient(to right, var(--win-blue), var(--win-blue-light));
+    color: white;
+    font-family: var(--pixel);
+    font-size: 6px;
+    padding: 3px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #drag-tip .tip-body {
+    padding: 8px 10px;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  #drag-tip .tip-icon { font-size: 22px; flex-shrink: 0; }
+  #drag-tip .tip-close {
+    width: 14px; height: 12px;
+    background: var(--win-bg);
+    border: 1px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    font-size: 7px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold;
+    color: #000;
+    font-family: Arial, sans-serif;
+    flex-shrink: 0;
+  }
+  #drag-tip .tip-progress {
+    height: 3px;
+    background: var(--win-blue-light);
+    animation: shrink 5s linear forwards;
+  }
+  @keyframes shrink { from { width: 100%; } to { width: 0%; } }
 </style>
 </head>
 <body>
 
 <!-- ===== DESKTOP ICONS ===== -->
-<div class="desktop-icon" style="top:10px; left:10px;" onclick="focusWin('win-about')">
+<div class="desktop-icon" style="top:10px; left:10px;" onclick="openWin('win-about')">
   <span class="icon-img">🖥️</span>
   <span class="icon-label">about me</span>
 </div>
-<div class="desktop-icon" style="top:100px; left:10px;" onclick="focusWin('win-exp')">
+<div class="desktop-icon" style="top:100px; left:10px;" onclick="openWin('win-exp')">
   <span class="icon-img">📁</span>
   <span class="icon-label">experience</span>
 </div>
-<div class="desktop-icon" style="top:190px; left:10px;" onclick="focusWin('win-projects')">
+<div class="desktop-icon" style="top:190px; left:10px;" onclick="openWin('win-projects')">
   <span class="icon-img">⚡</span>
   <span class="icon-label">projects</span>
 </div>
-<div class="desktop-icon" style="top:280px; left:10px;" onclick="focusWin('win-skills')">
+<div class="desktop-icon" style="top:280px; left:10px;" onclick="openWin('win-skills')">
   <span class="icon-img">🔧</span>
   <span class="icon-label">skills.exe</span>
 </div>
-<div class="desktop-icon" style="top:370px; left:10px;" onclick="focusWin('win-pubs')">
+<div class="desktop-icon" style="top:370px; left:10px;" onclick="openWin('win-pubs')">
   <span class="icon-img">📄</span>
   <span class="icon-label">publications</span>
 </div>
-<div class="desktop-icon" style="top:460px; left:10px;" onclick="focusWin('win-contact')">
+<div class="desktop-icon" style="top:460px; left:10px;" onclick="openWin('win-contact')">
   <span class="icon-img">📧</span>
   <span class="icon-label">contact.txt</span>
 </div>
 
 <!-- ===== WINDOW: ABOUT ===== -->
-<div class="win" id="win-about" style="top:20px; left:100px; width:380px;">
+<div class="win" id="win-about" style="top:10px; left:90px; width:355px;">
   <div class="win-titlebar" onmousedown="startDrag(event,'win-about')">
     <div class="win-title-text">
       <span class="win-title-icon">🖥️</span>
@@ -528,7 +583,7 @@
 </div>
 
 <!-- ===== WINDOW: EXPERIENCE ===== -->
-<div class="win" id="win-exp" style="top:20px; left:500px; width:420px; max-height:520px;">
+<div class="win" id="win-exp" style="top:10px; left:458px; width:410px; max-height:510px;">
   <div class="win-titlebar" onmousedown="startDrag(event,'win-exp')">
     <div class="win-title-text">
       <span class="win-title-icon">📁</span>
@@ -547,7 +602,7 @@
     <span class="menu-item">Tools</span>
   </div>
   <div class="pixel-strip"></div>
-  <div class="win-body" style="overflow-y:auto; max-height:430px;">
+  <div class="win-body" style="overflow-y:auto; max-height:415px;">
 
     <div class="section-header">📁 WORK EXPERIENCE</div>
 
@@ -622,7 +677,7 @@
 </div>
 
 <!-- ===== WINDOW: PROJECTS ===== -->
-<div class="win" id="win-projects" style="top:300px; left:100px; width:400px;">
+<div class="win" id="win-projects" style="top:295px; left:90px; width:355px;">
   <div class="win-titlebar" onmousedown="startDrag(event,'win-projects')">
     <div class="win-title-text">
       <span class="win-title-icon">⚡</span>
@@ -641,7 +696,7 @@
     <span class="menu-item">View</span>
   </div>
   <div class="pixel-strip"></div>
-  <div class="win-body" style="max-height:360px; overflow-y:auto;">
+  <div class="win-body" style="max-height:330px; overflow-y:auto;">
     <div class="section-header">🚀 PROJECTS</div>
 
     <div class="exp-card">
@@ -699,7 +754,7 @@
 </div>
 
 <!-- ===== WINDOW: SKILLS ===== -->
-<div class="win" id="win-skills" style="top:300px; left:520px; width:330px;">
+<div class="win" id="win-skills" style="top:10px; left:882px; width:345px;">
   <div class="win-titlebar" onmousedown="startDrag(event,'win-skills')">
     <div class="win-title-text">
       <span class="win-title-icon">🔧</span>
@@ -746,7 +801,7 @@
 </div>
 
 <!-- ===== WINDOW: PUBLICATIONS ===== -->
-<div class="win" id="win-pubs" style="top:580px; left:100px; width:440px;">
+<div class="win" id="win-pubs" style="top:375px; left:882px; width:345px;">
   <div class="win-titlebar" onmousedown="startDrag(event,'win-pubs')">
     <div class="win-title-text">
       <span class="win-title-icon">📄</span>
@@ -793,7 +848,7 @@
 </div>
 
 <!-- ===== WINDOW: CONTACT ===== -->
-<div class="win" id="win-contact" style="top:580px; left:560px; width:290px;">
+<div class="win" id="win-contact" style="top:525px; left:458px; width:410px;">
   <div class="win-titlebar" onmousedown="startDrag(event,'win-contact')">
     <div class="win-title-text">
       <span class="win-title-icon">📧</span>
@@ -833,6 +888,19 @@
   <div class="status-bar">
     <div class="status-panel">ready</div>
   </div>
+</div>
+
+<!-- ===== DRAG TIP TOAST ===== -->
+<div id="drag-tip">
+  <div class="tip-titlebar">
+    <span>💡 tip.exe</span>
+    <button class="tip-close" onclick="dismissTip()">✕</button>
+  </div>
+  <div class="tip-body">
+    <span class="tip-icon">🖱️</span>
+    <span>you can <b>drag the windows</b> around by clicking their title bars!</span>
+  </div>
+  <div class="tip-progress" id="tip-progress"></div>
 </div>
 
 <!-- ===== TASKBAR ===== -->
@@ -907,11 +975,14 @@
   });
 
   function focusWin(id) {
-    // bring to front
+    // bring to front — also reopen if closed or minimized
+    if (!winState[id].open || winState[id].minimized) {
+      openWin(id);
+      return;
+    }
     document.querySelectorAll('.win').forEach(w => {
       w.style.zIndex = w.id === id ? 50 : 10;
     });
-    if (winState[id].minimized) openWin(id);
     updateTaskbar();
   }
 
@@ -989,6 +1060,15 @@
   // ===== EASTER EGG =====
   document.title = 'pranav.exe — welcome!!';
   console.log('%c hi!! found the console :) — pvp6360@nyu.edu', 'color: #000080; font-family: monospace; font-size: 14px; background: #c0c0c0; padding: 4px;');
+
+  // ===== DRAG TIP TOAST =====
+  let tipTimer = setTimeout(() => dismissTip(), 5000);
+  function dismissTip() {
+    clearTimeout(tipTimer);
+    const tip = document.getElementById('drag-tip');
+    tip.classList.add('fade-out');
+    setTimeout(() => tip.style.display = 'none', 650);
+  }
 </script>
 </body>
 </html>
