@@ -1,268 +1,994 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #001122;
-            color: white;
-            line-height: 1.6;
-            overflow: hidden;
-        }
-        header {
-            background-color: #001122;
-            color: white;
-            text-align: center;
-            padding: 0.5rem 1rem;
-            position: fixed;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            transform: none;
-            opacity: 0;
-            transition: all 1s ease-out;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pranav's corner of the internet!!</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --win-bg: #c0c0c0;
+    --win-blue: #000080;
+    --win-blue-light: #1084d0;
+    --win-border-light: #ffffff;
+    --win-border-dark: #808080;
+    --win-border-darker: #404040;
+    --win-btn: #c0c0c0;
+    --teal: #008080;
+    --pixel: 'Press Start 2P', monospace;
+    --mono: 'Share Tech Mono', monospace;
+    --vt: 'VT323', monospace;
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin: 0;
-        }
-        header p {
-            font-size: 1rem;
-            margin: 0.5rem 0;
-            opacity: 1;
-        }
-        header.loaded {
-            opacity: 1;
-        }
-        header.top {
-            top: 0;
-        }
+  body {
+    background-color: var(--teal);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0,0,0,0.04) 31px, rgba(0,0,0,0.04) 32px),
+      repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(0,0,0,0.04) 31px, rgba(0,0,0,0.04) 32px);
+    min-height: 100vh;
+    font-family: var(--mono);
+    padding: 8px;
+    padding-bottom: 48px;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='white' stroke='black' stroke-width='1' d='M0 0 L0 13 L4 9 L7 15 L9 14 L6 8 L11 8 Z'/%3E%3C/svg%3E"), auto;
+  }
 
+  /* ===== WIN98 WINDOW CHROME ===== */
+  .win {
+    position: absolute;
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    box-shadow: 2px 2px 0 #000;
+    min-width: 200px;
+    z-index: 10;
+  }
+  .win:focus-within { z-index: 50; }
 
-        nav a {
-            color: white;
-            margin: 0 2rem;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #00aaff;
-        }
-        nav {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            padding: 0.5rem 1rem;
-            background-color: #001122;
-            border-bottom: 1px solid white;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        section {
-            padding: 3rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        section.loaded {
-            opacity: 1;
-        }
-        section.loaded.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            color: #00aaff;
-        }
-        section h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        .project {
-            background-color: #002244;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 5px;
-            border: 1px solid #333;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-        .project h3 {
-            color: #00aaff;
-            margin-top: 0;
-        }
-        footer {
-            background-color: #001122;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #333;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        footer.loaded {
-            opacity: 1;
-        }
-        a {
-            color: #00aaff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  .win-titlebar {
+    background: linear-gradient(to right, var(--win-blue) 0%, var(--win-blue-light) 100%);
+    color: white;
+    font-family: var(--pixel);
+    font-size: 7px;
+    padding: 3px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: grab;
+    user-select: none;
+    gap: 4px;
+  }
+  .win-titlebar:active { cursor: grabbing; }
+  .win-title-text { display: flex; align-items: center; gap: 5px; }
+  .win-title-icon { font-size: 10px; }
+
+  .win-buttons { display: flex; gap: 2px; flex-shrink: 0; }
+  .win-btn {
+    width: 16px; height: 14px;
+    background: var(--win-bg);
+    border: 1px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    font-size: 8px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold;
+    color: #000;
+    font-family: Arial, sans-serif;
+    line-height: 1;
+  }
+  .win-btn:active {
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+  }
+
+  .win-body { padding: 8px; font-family: var(--mono); font-size: 12px; }
+
+  /* ===== MENU BAR ===== */
+  .menu-bar {
+    background: var(--win-bg);
+    border-bottom: 1px solid var(--win-border-dark);
+    display: flex;
+    gap: 0;
+    padding: 1px 2px;
+    font-size: 11px;
+    font-family: 'Tahoma', sans-serif;
+  }
+  .menu-item {
+    padding: 2px 6px;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+  }
+  .menu-item:hover { background: var(--win-blue); color: white; }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar {
+    border-top: 1px solid var(--win-border-dark);
+    padding: 2px 4px;
+    font-size: 10px;
+    font-family: 'Tahoma', sans-serif;
+    color: #444;
+    display: flex; gap: 8px;
+  }
+  .status-panel {
+    border: 1px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    padding: 0 4px;
+  }
+
+  /* ===== INSET BOX ===== */
+  .inset {
+    border: 2px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    padding: 6px;
+    background: white;
+    font-size: 11px;
+    font-family: 'Tahoma', sans-serif;
+  }
+  .raised {
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    padding: 6px;
+    background: var(--win-bg);
+  }
+
+  /* ===== PIXEL MARQUEE ===== */
+  .marquee-box {
+    border: 2px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    background: #000;
+    padding: 2px 4px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-box marquee { color: #00ff00; font-family: var(--pixel); font-size: 7px; }
+
+  /* ===== PIXEL HR ===== */
+  .pixel-hr {
+    border: none;
+    border-top: 2px solid;
+    border-color: var(--win-border-darker);
+    border-bottom: 1px solid var(--win-border-light);
+    margin: 6px 0;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    font-family: var(--pixel);
+    font-size: 7px;
+    color: var(--win-blue);
+    margin-bottom: 6px;
+    padding: 2px 4px;
+    background: linear-gradient(to right, #c0c0c0, #e0e0e0);
+    border-left: 3px solid var(--win-blue);
+  }
+
+  /* ===== SKILL BARS ===== */
+  .skill-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-size: 10px; font-family: 'Tahoma', sans-serif; }
+  .skill-label { width: 80px; text-align: right; flex-shrink: 0; }
+  .skill-track {
+    flex: 1;
+    height: 12px;
+    border: 1px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    background: white;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--win-blue), var(--win-blue-light));
+    position: relative;
+  }
+  .skill-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: rgba(255,255,255,0.25);
+  }
+
+  /* ===== EXP / PROJECT CARD ===== */
+  .exp-card {
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    padding: 6px;
+    margin-bottom: 6px;
+    background: var(--win-bg);
+    font-size: 10px;
+    font-family: 'Tahoma', sans-serif;
+  }
+  .exp-header { display: flex; justify-content: space-between; margin-bottom: 3px; }
+  .exp-title { font-weight: bold; font-size: 11px; }
+  .exp-date { color: #666; font-size: 9px; }
+  .exp-company { color: var(--win-blue); font-weight: bold; margin-bottom: 3px; }
+  .exp-bullets { padding-left: 14px; }
+  .exp-bullets li { margin-bottom: 2px; line-height: 1.4; }
+
+  /* ===== TAG PILLS ===== */
+  .tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+  .tag {
+    font-family: var(--pixel);
+    font-size: 6px;
+    padding: 2px 4px;
+    background: var(--win-blue);
+    color: white;
+    border: 1px solid var(--win-border-darker);
+  }
+
+  /* ===== BLINK ===== */
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+  .blink { animation: blink 1s step-start infinite; }
+
+  /* ===== DESKTOP ICONS ===== */
+  .desktop-icon {
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px;
+  }
+  .desktop-icon:hover .icon-label { background: var(--win-blue); color: white; }
+  .desktop-icon .icon-img { font-size: 32px; display: block; margin-bottom: 2px; }
+  .desktop-icon .icon-label {
+    font-family: var(--pixel);
+    font-size: 6px;
+    color: white;
+    text-shadow: 1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000;
+    line-height: 1.4;
+    display: block;
+    padding: 1px 2px;
+  }
+
+  /* ===== TASKBAR ===== */
+  #taskbar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: var(--win-bg);
+    border-top: 2px solid var(--win-border-light);
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    gap: 4px;
+    z-index: 1000;
+  }
+
+  #start-btn {
+    font-family: var(--pixel);
+    font-size: 7px;
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    padding: 4px 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex; align-items: center; gap: 4px;
+    height: 32px;
+  }
+  #start-btn:active {
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+  }
+  #start-btn:hover { background: #d0d0d0; }
+
+  .taskbar-divider {
+    width: 2px; height: 28px;
+    border-left: 1px solid var(--win-border-darker);
+    border-right: 1px solid var(--win-border-light);
+    margin: 0 2px;
+  }
+
+  .taskbar-task {
+    font-family: var(--pixel);
+    font-size: 6px;
+    background: var(--win-bg);
+    border: 1px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    padding: 2px 6px;
+    cursor: pointer;
+    height: 28px;
+    display: flex; align-items: center; gap: 3px;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .taskbar-task.active {
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    background: #b0b0b0;
+  }
+
+  #clock-area {
+    margin-left: auto;
+    border: 1px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    padding: 2px 8px;
+    font-family: var(--pixel);
+    font-size: 7px;
+    height: 28px;
+    display: flex; align-items: center;
+  }
+
+  /* ===== START MENU ===== */
+  #start-menu {
+    position: fixed;
+    bottom: 40px; left: 0;
+    width: 200px;
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    box-shadow: 3px 3px 0 #000;
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+  }
+  #start-menu.visible { display: flex; }
+  .start-menu-header {
+    background: linear-gradient(to bottom, var(--win-blue-light), var(--win-blue));
+    color: white;
+    font-family: var(--pixel);
+    font-size: 8px;
+    padding: 10px 8px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    height: 150px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 28px;
+  }
+  .start-menu-items { padding: 4px 4px 4px 32px; }
+  .start-menu-item {
+    padding: 5px 8px;
+    cursor: pointer;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 11px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .start-menu-item:hover { background: var(--win-blue); color: white; }
+  .start-menu-hr { border: none; border-top: 1px solid var(--win-border-dark); margin: 3px 0 3px 30px; }
+
+  /* ===== SCROLLBAR STYLING ===== */
+  ::-webkit-scrollbar { width: 16px; }
+  ::-webkit-scrollbar-track { background: var(--win-bg); border: 1px solid var(--win-border-dark); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+  }
+
+  /* ===== PIXEL DECORATION STRIP ===== */
+  .pixel-strip {
+    font-family: var(--pixel);
+    font-size: 8px;
+    color: #000;
+    padding: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      #000080 0px, #000080 4px,
+      #c0c0c0 4px, #c0c0c0 8px
+    );
+    height: 8px;
+  }
+
+  /* ===== BLINKING CURSOR ===== */
+  .cursor::after {
+    content: '▮';
+    animation: blink 0.8s step-start infinite;
+  }
+
+  /* ===== ABOUT BOX ===== */
+  .about-pic {
+    width: 64px; height: 64px;
+    background: var(--win-blue);
+    border: 2px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  /* ===== GUESTBOOK / CONTACT FORM ===== */
+  .pixel-input {
+    border: 2px solid;
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+    background: white;
+    padding: 3px 5px;
+    font-family: var(--mono);
+    font-size: 11px;
+    width: 100%;
+    margin-bottom: 4px;
+    outline: none;
+  }
+  .pixel-btn {
+    font-family: var(--pixel);
+    font-size: 7px;
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--win-border-light) var(--win-border-darker) var(--win-border-darker) var(--win-border-light);
+    padding: 4px 10px;
+    cursor: pointer;
+  }
+  .pixel-btn:active {
+    border-color: var(--win-border-darker) var(--win-border-light) var(--win-border-light) var(--win-border-darker);
+  }
+  .pixel-btn:hover { background: #d0d0d0; }
+
+  /* ===== PUBLICATION ===== */
+  .pub-card {
+    border-left: 3px solid var(--win-blue);
+    padding: 4px 8px;
+    margin-bottom: 8px;
+    background: #f0f0f0;
+    font-size: 10px;
+    font-family: 'Tahoma', sans-serif;
+  }
+
+  /* ===== LINK STYLES ===== */
+  a { color: #0000ee; }
+  a:visited { color: #551a8b; }
+
+  /* ===== PIXEL ART DIVIDER ===== */
+  .px-div {
+    text-align: center;
+    font-size: 8px;
+    color: var(--win-border-dark);
+    letter-spacing: 2px;
+    margin: 4px 0;
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Pranav Penmatcha</h1>
-        <p>623-850-8488 | pvp6360@nyu.edu | linkedin.com/in/pranav-penmatcha/</p>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#publications">Publications</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <h3>Education</h3>
-        <p>New York University, Sep. 2023 – May 2027<br>
-        Bachelor of Science in Electrical and Computer Engineering (Dean’s List)<br>
-        New York City, New York<br>
-        Relevant Coursework: Data Structures, Object Oriented Programming, Computer Architecture, Signals and Systems, Embedded Systems, Digital Logic, Electronics I, Linear Algebra and Differential Equations, Physics: EMF, Calculus II</p>
-        <h3>Technical Skills</h3>
-        <p>Languages/Frameworks: Python, Java, C, React, SQL, NodeJS, Flask, JavaScript, HTML/CSS<br>
-        Developer Tools: VS Code, Eclipse, Google Cloud Platform, Android Studio<br>
-        Technologies/Frameworks: AWS, Github, Altium, Linux, Jenkins, JUnit, WordPress, KiCAD, OrCAD, Solidworks, Vivado<br>
-        Certifications: Python (PCAP) Certification, Apple Macbook, iPad, iPhone mechanic certification</p>
-    </section>
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="project">
-            <h3>ESX, Empire State Exchange | Full Stack Developer | June 2025 – Present | New York City, New York</h3>
-            <p>• Built out data terminal with backend services for real time betting operations. Implemented RESTFUL APIs and Kafka and Redis based orderbook for real time sports betting.<br>
-            • Collaborated with a cross-functional team to build and maintain databases [MongoDB, NoSQL] for handling thousands of concurrent users with low latency and high data integrity<br>
-            • Created interactive and functional frontend with modern frameworks like REACT working with reusable components from Figma. Integrated modern UI and blazingly fast real time data updates. (Work: <a href="https://www.esxtrade.com/" target="_blank">https://www.esxtrade.com/</a>)</p>
-        </div>
-        <div class="project">
-            <h3>NOCO | Architect Engineer Intern | June 2025 – August 2025 | Phoenix, Arizona</h3>
-            <p>• Developed PCB testing systems and Peak Current Tester using Python, JavaScript, and C++. Built out firmware and developed Embedded Systems UI for real-time processing.<br>
-            • Created automated Battery Cycle Tester with Java backend, to manage a fleet of 100 batteries at once. Implemented statistical data analysis, big data processing, and AI/ML techniques for predictive maintenance.</p>
-        </div>
-        <div class="project">
-            <h3>Teaching Assistant | August 2025 – Present | New York University</h3>
-            <p>Recitation, Grading, Writing, and Webdev TA</p>
-        </div>
-    </section>
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Mouse for Parkinson’s | February 2025 - April 2025</h3>
-            <p>• Designed and 3D-printed a Parkinson’s-friendly trackball mouse with ergonomic, stigma-free aesthetics<br>
-            • Programmed custom firmware in C and CircuitPython for smooth, tremor-resistant cursor control.<br>
-            • Developed and soldered a custom PCB integrating buttons, trackball sensor, and microcontroller.</p>
-        </div>
-        <div class="project">
-            <h3>NYU STEP Humanoid | September 2025 - Present</h3>
-            <p>• Designed and integrated PCBs for robotic legs to handle multi-motor control<br>
-            • Prototyped and assembled hardware components using CAD, CNC, and 3D printing.<br>
-            • Understood how to work with NVIDIA Jetson tool and ROS2.</p>
-        </div>
-        <div class="project">
-            <h3>NYU Financial Forecasting Club | January 2024 - Present</h3>
-            <p>• Built high-performance financial modeling systems using Go for concurrent data processing<br>
-            • Integrated Rust for memory-safe algorithmic trading components.</p>
-        </div>
-    </section>
-    <section id="publications">
-        <h2>Publications</h2>
-        <div class="project">
-            <h3>Optimization of GaAs to Si Cross-Bonding with Minimal Thermal Activation and Compression in Ambient Air through NanoBonding</h3>
-            <p>DOI: <a href="https://doi.org/10.13140/RG.2.2.34240.81923" target="_blank">10.13140/RG.2.2.34240.81923</a></p>
-        </div>
-        <div class="project">
-            <h3>GaAs to Si Direct Wafer Bonding at T ≤ 220°C in Ambient Air Via NanoBonding™ and Surface Energy Engineering (SEE)</h3>
-            <p>DOI: <a href="https://doi.org/10.1007/s12633-022-01855-9" target="_blank">10.1007/s12633-022-01855-9</a></p>
-        </div>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Phone: 623-850-8488</p>
-        <p>Email: pvp6360@nyu.edu</p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/pranav-penmatcha/" target="_blank">linkedin.com/in/pranav-penmatcha/</a></p>
-        <p>GitHub: <a href="https://github.com/PranavPenmatcha-os" target="_blank">github.com/PranavPenmatcha-os</a></p>
-    </section>
-    <footer>
-        <p>&copy; 2025 Pranav Penmatcha</p>
-    </footer>
-    <script>
-        window.addEventListener('load', () => {
-            const header = document.querySelector('header');
-            const nav = document.querySelector('nav');
-            setTimeout(() => {
-                header.classList.add('loaded');
-            }, 1000);
-            setTimeout(() => {
-                header.classList.add('top');
-            }, 2000);
-            setTimeout(() => {
-                nav.style.opacity = '1';
-                setTimeout(() => {
-                    document.querySelectorAll('section').forEach(section => {
-                        section.classList.add('loaded');
-                        section.style.marginTop = header.offsetHeight + 'px';
-                    });
-                    document.querySelector('footer').classList.add('loaded');
-                    document.body.style.overflow = 'auto';
-                    window.scrollTo(0, 0);
-                }, 500);
-            }, 3000);
-        });
 
-        const sections = document.querySelectorAll('section');
+<!-- ===== DESKTOP ICONS ===== -->
+<div class="desktop-icon" style="top:10px; left:10px;" onclick="focusWin('win-about')">
+  <span class="icon-img">🖥️</span>
+  <span class="icon-label">about me</span>
+</div>
+<div class="desktop-icon" style="top:100px; left:10px;" onclick="focusWin('win-exp')">
+  <span class="icon-img">📁</span>
+  <span class="icon-label">experience</span>
+</div>
+<div class="desktop-icon" style="top:190px; left:10px;" onclick="focusWin('win-projects')">
+  <span class="icon-img">⚡</span>
+  <span class="icon-label">projects</span>
+</div>
+<div class="desktop-icon" style="top:280px; left:10px;" onclick="focusWin('win-skills')">
+  <span class="icon-img">🔧</span>
+  <span class="icon-label">skills.exe</span>
+</div>
+<div class="desktop-icon" style="top:370px; left:10px;" onclick="focusWin('win-pubs')">
+  <span class="icon-img">📄</span>
+  <span class="icon-label">publications</span>
+</div>
+<div class="desktop-icon" style="top:460px; left:10px;" onclick="focusWin('win-contact')">
+  <span class="icon-img">📧</span>
+  <span class="icon-label">contact.txt</span>
+</div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('loaded')) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+<!-- ===== WINDOW: ABOUT ===== -->
+<div class="win" id="win-about" style="top:20px; left:100px; width:380px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-about')">
+    <div class="win-title-text">
+      <span class="win-title-icon">🖥️</span>
+      pranav_penmatcha.exe
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" onclick="minimizeWin('win-about')">_</button>
+      <button class="win-btn" onclick="maximizeWin('win-about')">□</button>
+      <button class="win-btn" onclick="closeWin('win-about')" style="font-weight:bold;">✕</button>
+    </div>
+  </div>
+  <div class="menu-bar">
+    <span class="menu-item">File</span>
+    <span class="menu-item">Edit</span>
+    <span class="menu-item">View</span>
+    <span class="menu-item">Help</span>
+  </div>
+  <div class="pixel-strip"></div>
+  <div class="win-body">
+    <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:8px;">
+      <div class="about-pic">👨‍💻</div>
+      <div style="flex:1;">
+        <div style="font-family:var(--pixel); font-size:9px; color:var(--win-blue); margin-bottom:4px;">PRANAV PENMATCHA<span class="cursor"></span></div>
+        <div style="font-size:10px; font-family:'Tahoma',sans-serif; line-height:1.6;">
+          🎓 BS Electrical & Computer Engineering<br>
+          📍 New York University | Dean's List<br>
+          📅 Class of 2027<br>
+          📞 (623) 850-8488
+        </div>
+      </div>
+    </div>
+    <div class="marquee-box">
+      <marquee>✦ ECE @ NYU ✦ Hardware Engineer ✦ Embedded Systems ✦ PCB Design ✦ Open to Opportunities ✦ Dean's List ✦</marquee>
+    </div>
+    <div class="pixel-hr"></div>
+    <div class="inset" style="line-height:1.7; font-size:11px;">
+      hey!! welcome to my lil corner of the internet :3<br><br>
+      i'm pranav — an ECE student at NYU building cool stuff at the intersection of <b>hardware + software</b>. i love PCB design, embedded systems, and making things that actually work in the real world!<br><br>
+      i've interned as an <b>electrical engineer</b> (NOCO) and <b>backend developer</b> (Empire State Exchange), and i'm always working on projects that challenge me 🔧⚡
+    </div>
+    <div class="pixel-hr"></div>
+    <div style="font-family:var(--pixel); font-size:6px; color:#666; text-align:center;">
+      📧 pvp6360@nyu.edu &nbsp;|&nbsp;
+      <a href="https://linkedin.com/in/pranav-penmatcha/">linkedin</a> &nbsp;|&nbsp;
+      <a href="https://github.com/PranavPenmatcha-os">github</a>
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-panel">ECE @ NYU</div>
+    <div class="status-panel">Dean's List 🌟</div>
+    <div class="status-panel">2023–2027</div>
+  </div>
+</div>
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+<!-- ===== WINDOW: EXPERIENCE ===== -->
+<div class="win" id="win-exp" style="top:20px; left:500px; width:420px; max-height:520px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-exp')">
+    <div class="win-title-text">
+      <span class="win-title-icon">📁</span>
+      experience - File Explorer
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" onclick="minimizeWin('win-exp')">_</button>
+      <button class="win-btn">□</button>
+      <button class="win-btn" onclick="closeWin('win-exp')" style="font-weight:bold;">✕</button>
+    </div>
+  </div>
+  <div class="menu-bar">
+    <span class="menu-item">File</span>
+    <span class="menu-item">View</span>
+    <span class="menu-item">Favorites</span>
+    <span class="menu-item">Tools</span>
+  </div>
+  <div class="pixel-strip"></div>
+  <div class="win-body" style="overflow-y:auto; max-height:430px;">
+
+    <div class="section-header">📁 WORK EXPERIENCE</div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">⚡ Electrical Engineer Intern</span>
+        <span class="exp-date">June – Aug 2025</span>
+      </div>
+      <div class="exp-company">🏢 NOCO · Phoenix, AZ</div>
+      <ul class="exp-bullets">
+        <li>Developed PCB design for USB-C testing with high-side current measurement</li>
+        <li>Learned UART, SPI, I2C communication protocols; high-speed data paths, ADC basics, PCBA & manufacturing</li>
+        <li>Built Peak Current Tester for BOOST team — designed PCB in Altium, wrote new firmware, integrated DataQ</li>
+        <li>Debugged embedded systems in Linux; became familiar with TCP & JTAG protocols</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Altium</span><span class="tag">PCB Design</span><span class="tag">UART/SPI/I2C</span>
+        <span class="tag">JTAG</span><span class="tag">Embedded</span><span class="tag">Linux</span><span class="tag">ADC</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">💻 Back End Developer Intern</span>
+        <span class="exp-date">June – Aug 2025</span>
+      </div>
+      <div class="exp-company">🏢 Empire State Exchange · New York City, NY</div>
+      <ul class="exp-bullets">
+        <li>Helped build a low-latency C++ trading machine running Omarchy Linux for orderbook handling</li>
+        <li>Collaborated cross-functionally; maintained MongoDB databases via Git workflow & Postman API calls</li>
+        <li>Developed game data scrapers for NBA & NFL; worked in Solidity for Ethereum crypto wallet management</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">C++</span><span class="tag">MongoDB</span><span class="tag">Solidity</span>
+        <span class="tag">Ethereum</span><span class="tag">REST APIs</span><span class="tag">Git</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">📚 Teaching Assistant</span>
+        <span class="exp-date">Aug 2025 – Present</span>
+      </div>
+      <div class="exp-company">🏢 New York University · New York City, NY</div>
+      <ul class="exp-bullets">
+        <li>Recitation, grading, writing, and web development TA duties at NYU</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Teaching</span><span class="tag">WebDev</span><span class="tag">NYU</span>
+      </div>
+    </div>
+
+    <div class="pixel-hr"></div>
+    <div class="section-header">🎓 EDUCATION</div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">🏫 New York University</span>
+        <span class="exp-date">Sep 2023 – May 2027</span>
+      </div>
+      <div class="exp-company">BS Electrical & Computer Engineering · Dean's List 🌟</div>
+      <div style="font-size:10px; font-family:'Tahoma',sans-serif; margin-top:4px;">
+        <b>Relevant Coursework:</b> Embedded Systems · Computer Architecture · Operating Systems ·
+        Signals & Systems · Digital Logic · Electronics I · OOP · Data Structures · Linear Algebra & DiffEq · Physics (EMF) · Calc II
+      </div>
+    </div>
+
+  </div>
+  <div class="status-bar">
+    <div class="status-panel">3 items</div>
+    <div class="status-panel">Updated 2025</div>
+  </div>
+</div>
+
+<!-- ===== WINDOW: PROJECTS ===== -->
+<div class="win" id="win-projects" style="top:300px; left:100px; width:400px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-projects')">
+    <div class="win-title-text">
+      <span class="win-title-icon">⚡</span>
+      projects - Notepad
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" onclick="minimizeWin('win-projects')">_</button>
+      <button class="win-btn">□</button>
+      <button class="win-btn" onclick="closeWin('win-projects')" style="font-weight:bold;">✕</button>
+    </div>
+  </div>
+  <div class="menu-bar">
+    <span class="menu-item">File</span>
+    <span class="menu-item">Edit</span>
+    <span class="menu-item">Format</span>
+    <span class="menu-item">View</span>
+  </div>
+  <div class="pixel-strip"></div>
+  <div class="win-body" style="max-height:360px; overflow-y:auto;">
+    <div class="section-header">🚀 PROJECTS</div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">🖱️ Mouse for Parkinson's</span>
+        <span class="exp-date">Feb – Apr 2025</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Designed & 3D-printed a Parkinson's-friendly trackball mouse with ergonomic, stigma-free aesthetics</li>
+        <li>Programmed custom firmware in C & CircuitPython for tremor-resistant cursor control</li>
+        <li>Worked with STM32 microcontroller, began work with RTOS</li>
+        <li>Applied DSP signal filtering techniques to reduce motion noise</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">C</span><span class="tag">CircuitPython</span><span class="tag">STM32</span>
+        <span class="tag">PCB Design</span><span class="tag">CAD</span><span class="tag">3D Print</span><span class="tag">DSP</span><span class="tag">RTOS</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">🤖 NYU STEP (Autonomous Robotics)</span>
+        <span class="exp-date">Sep 2025 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Assembled autonomous robotic legs in NYU's STEP Lab; handled hardware-firmware interfacing</li>
+        <li>Worked on CANbus for multi-motor control</li>
+        <li>Prototyped hardware; familiarized with NVIDIA Jetson Orin; began computer vision for walking</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Altium</span><span class="tag">CAD</span><span class="tag">Jetson Orin</span>
+        <span class="tag">ROS2</span><span class="tag">CANbus</span><span class="tag">CV</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-title">📈 NYU Financial Forecasting Club</span>
+        <span class="exp-date">Jan 2024 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Built predictive financial models with machine learning; led team analysis using Python & Tableau</li>
+        <li>Used NumPy, Pandas, Matplotlib, and PyTorch for data analysis & modeling</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">NumPy</span>
+        <span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Tableau</span>
+      </div>
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-panel">Ln 1, Col 1</div>
+    <div class="status-panel">3 projects</div>
+  </div>
+</div>
+
+<!-- ===== WINDOW: SKILLS ===== -->
+<div class="win" id="win-skills" style="top:300px; left:520px; width:330px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-skills')">
+    <div class="win-title-text">
+      <span class="win-title-icon">🔧</span>
+      skills.exe
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" onclick="minimizeWin('win-skills')">_</button>
+      <button class="win-btn">□</button>
+      <button class="win-btn" onclick="closeWin('win-skills')" style="font-weight:bold;">✕</button>
+    </div>
+  </div>
+  <div class="pixel-strip"></div>
+  <div class="win-body">
+
+    <div class="section-header">⚡ LANGUAGES</div>
+    <div class="skill-row"><span class="skill-label">C</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill-row"><span class="skill-label">Python</span><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+    <div class="skill-row"><span class="skill-label">Verilog</span><div class="skill-track"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill-row"><span class="skill-label">JavaScript</span><div class="skill-track"><div class="skill-fill" style="width:75%"></div></div></div>
+    <div class="skill-row"><span class="skill-label">Java</span><div class="skill-track"><div class="skill-fill" style="width:70%"></div></div></div>
+    <div class="skill-row"><span class="skill-label">SQL</span><div class="skill-track"><div class="skill-fill" style="width:65%"></div></div></div>
+    <div class="skill-row"><span class="skill-label">C++</span><div class="skill-track"><div class="skill-fill" style="width:72%"></div></div></div>
+
+    <div class="pixel-hr"></div>
+    <div class="section-header">🛠️ TOOLS & FRAMEWORKS</div>
+    <div class="raised" style="font-size:10px; font-family:'Tahoma',sans-serif; line-height:1.9;">
+      <b>HW Design:</b> Altium · KiCAD · OrCAD · Vivado · Solidworks<br>
+      <b>Embedded:</b> STM32 · RTOS · JTAG · CANbus · UART/SPI/I2C<br>
+      <b>Dev Tools:</b> VS Code · Git · Linux · Android Studio · GCP<br>
+      <b>Web/Backend:</b> React · NodeJS · Flask · HTML/CSS · MongoDB<br>
+      <b>Data/ML:</b> NumPy · Pandas · PyTorch · Matplotlib · Tableau
+    </div>
+    <div class="pixel-hr"></div>
+    <div class="section-header">🏅 CERTIFICATIONS</div>
+    <div class="inset" style="font-size:10px; line-height:1.8;">
+      ✅ Python (PCAP) Certification<br>
+      ✅ Apple MacBook, iPad & iPhone Mechanic Certification
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-panel">skills loaded</div>
+    <div class="status-panel">100%</div>
+  </div>
+</div>
+
+<!-- ===== WINDOW: PUBLICATIONS ===== -->
+<div class="win" id="win-pubs" style="top:580px; left:100px; width:440px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-pubs')">
+    <div class="win-title-text">
+      <span class="win-title-icon">📄</span>
+      publications - Adobe Reader
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" onclick="minimizeWin('win-pubs')">_</button>
+      <button class="win-btn">□</button>
+      <button class="win-btn" onclick="closeWin('win-pubs')" style="font-weight:bold;">✕</button>
+    </div>
+  </div>
+  <div class="pixel-strip"></div>
+  <div class="win-body">
+    <div class="section-header">📚 PEER-REVIEWED PUBLICATIONS</div>
+
+    <div class="pub-card">
+      <div style="font-weight:bold; margin-bottom:4px; font-size:11px;">
+        Optimization of GaAs to Si Cross-Bonding with Minimal Thermal Activation and Compression in Ambient Air through NanoBonding
+      </div>
+      <div style="color:#666; font-size:9px; margin-bottom:2px;">DOI: 10.13140/RG.2.2.34240.81923</div>
+      <div class="tags">
+        <span class="tag">GaAs</span><span class="tag">Si</span><span class="tag">NanoBonding</span><span class="tag">Semiconductors</span>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div style="font-weight:bold; margin-bottom:4px; font-size:11px;">
+        GaAs to Si Direct Wafer Bonding at T ≤ 220°C in Ambient Air Via NanoBonding™ and Surface Energy Engineering (SEE)
+      </div>
+      <div style="color:#666; font-size:9px; margin-bottom:2px;">DOI: 10.1007/s12633-022-01855-9</div>
+      <div class="tags">
+        <span class="tag">Wafer Bonding</span><span class="tag">SEE</span><span class="tag">NanoBonding™</span><span class="tag">Materials</span>
+      </div>
+    </div>
+
+    <div class="marquee-box" style="margin-top:6px;">
+      <marquee>📖 published researcher @ NYU ✦ semiconductor materials ✦ nanobonding ✦ GaAs/Si ✦</marquee>
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-panel">2 publications</div>
+    <div class="status-panel">peer-reviewed ✅</div>
+  </div>
+</div>
+
+<!-- ===== WINDOW: CONTACT ===== -->
+<div class="win" id="win-contact" style="top:580px; left:560px; width:290px;">
+  <div class="win-titlebar" onmousedown="startDrag(event,'win-contact')">
+    <div class="win-title-text">
+      <span class="win-title-icon">📧</span>
+      contact.txt - Notepad
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" onclick="minimizeWin('win-contact')">_</button>
+      <button class="win-btn">□</button>
+      <button class="win-btn" onclick="closeWin('win-contact')" style="font-weight:bold;">✕</button>
+    </div>
+  </div>
+  <div class="pixel-strip"></div>
+  <div class="win-body">
+    <div class="section-header">📬 GET IN TOUCH</div>
+    <div class="inset" style="line-height:1.9; font-size:11px; margin-bottom:8px;">
+      📧 <a href="mailto:pvp6360@nyu.edu">pvp6360@nyu.edu</a><br>
+      📞 (623) 850-8488<br>
+      🔗 <a href="https://linkedin.com/in/pranav-penmatcha/" target="_blank">linkedin.com/in/pranav-penmatcha</a><br>
+      🐙 <a href="https://github.com/PranavPenmatcha-os" target="_blank">github.com/PranavPenmatcha-os</a>
+    </div>
+
+    <div class="pixel-hr"></div>
+    <div style="font-family:var(--pixel); font-size:7px; color:var(--win-blue); margin-bottom:6px;">✉️ SEND A MESSAGE</div>
+    <input class="pixel-input" placeholder="your name" />
+    <input class="pixel-input" placeholder="your email" />
+    <textarea class="pixel-input" placeholder="say hi!! :)" rows="3" style="resize:none;"></textarea>
+    <div style="text-align:right;">
+      <button class="pixel-btn" onclick="alert('message sent! (not really but imagine 📧)')">SEND &gt;&gt;</button>
+    </div>
+
+    <div class="pixel-hr"></div>
+    <div class="px-div">✦ open to internships & research ✦</div>
+    <div style="font-family:var(--pixel); font-size:6px; color:#666; text-align:center; margin-top:4px;">
+      <span class="blink">🟢</span> currently: open to opportunities!
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-panel">ready</div>
+  </div>
+</div>
+
+<!-- ===== TASKBAR ===== -->
+<div id="taskbar">
+  <button id="start-btn" onclick="toggleStartMenu()">
+    <span style="font-size:16px;">🪟</span> Start
+  </button>
+  <div class="taskbar-divider"></div>
+  <div id="taskbar-tasks" style="display:flex; gap:3px; flex:1; overflow:hidden; flex-wrap:nowrap;">
+    <!-- populated by JS -->
+  </div>
+  <div id="clock-area">00:00</div>
+</div>
+
+<!-- ===== START MENU ===== -->
+<div id="start-menu">
+  <div class="start-menu-header">PRANAV PENMATCHA</div>
+  <div class="start-menu-items">
+    <div class="start-menu-item" onclick="openWin('win-about'); toggleStartMenu()">🖥️ About Me</div>
+    <div class="start-menu-item" onclick="openWin('win-exp'); toggleStartMenu()">📁 Experience</div>
+    <div class="start-menu-item" onclick="openWin('win-projects'); toggleStartMenu()">⚡ Projects</div>
+    <div class="start-menu-item" onclick="openWin('win-skills'); toggleStartMenu()">🔧 Skills</div>
+    <div class="start-menu-item" onclick="openWin('win-pubs'); toggleStartMenu()">📄 Publications</div>
+    <div class="start-menu-item" onclick="openWin('win-contact'); toggleStartMenu()">📧 Contact</div>
+    <div class="start-menu-hr"></div>
+    <div class="start-menu-item" onclick="window.open('https://github.com/PranavPenmatcha-os','_blank'); toggleStartMenu()">🐙 GitHub</div>
+    <div class="start-menu-item" onclick="window.open('https://linkedin.com/in/pranav-penmatcha/','_blank'); toggleStartMenu()">🔗 LinkedIn</div>
+    <div class="start-menu-hr"></div>
+    <div class="start-menu-item" onclick="toggleStartMenu()">🚪 Close Menu</div>
+  </div>
+</div>
+
+<script>
+  // ===== DRAGGING =====
+  let dragging = null, dragOX = 0, dragOY = 0;
+
+  function startDrag(e, id) {
+    e.preventDefault();
+    dragging = id;
+    const el = document.getElementById(id);
+    const rect = el.getBoundingClientRect();
+    dragOX = e.clientX - rect.left;
+    dragOY = e.clientY - rect.top;
+    focusWin(id);
+  }
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const el = document.getElementById(dragging);
+    el.style.left = Math.max(0, e.clientX - dragOX) + 'px';
+    el.style.top = Math.max(0, e.clientY - dragOY) + 'px';
+  });
+
+  document.addEventListener('mouseup', () => { dragging = null; });
+
+  // ===== WINDOW MANAGEMENT =====
+  const winState = {};
+  const wins = ['win-about', 'win-exp', 'win-projects', 'win-skills', 'win-pubs', 'win-contact'];
+  const winTitles = {
+    'win-about': '🖥️ About Me',
+    'win-exp': '📁 Experience',
+    'win-projects': '⚡ Projects',
+    'win-skills': '🔧 Skills',
+    'win-pubs': '📄 Publications',
+    'win-contact': '📧 Contact',
+  };
+
+  wins.forEach(id => {
+    winState[id] = { open: true, minimized: false };
+    const el = document.getElementById(id);
+    el.addEventListener('mousedown', () => focusWin(id));
+  });
+
+  function focusWin(id) {
+    // bring to front
+    document.querySelectorAll('.win').forEach(w => {
+      w.style.zIndex = w.id === id ? 50 : 10;
+    });
+    if (winState[id].minimized) openWin(id);
+    updateTaskbar();
+  }
+
+  function closeWin(id) {
+    document.getElementById(id).style.display = 'none';
+    winState[id].open = false;
+    winState[id].minimized = false;
+    updateTaskbar();
+  }
+
+  function minimizeWin(id) {
+    document.getElementById(id).style.display = 'none';
+    winState[id].minimized = true;
+    updateTaskbar();
+  }
+
+  function openWin(id) {
+    const el = document.getElementById(id);
+    el.style.display = 'block';
+    winState[id].open = true;
+    winState[id].minimized = false;
+    focusWin(id);
+    updateTaskbar();
+  }
+
+  function maximizeWin(id) {
+    const el = document.getElementById(id);
+    el.style.top = '0';
+    el.style.left = '0';
+    el.style.width = '100vw';
+    el.style.maxHeight = 'calc(100vh - 48px)';
+  }
+
+  function updateTaskbar() {
+    const container = document.getElementById('taskbar-tasks');
+    container.innerHTML = '';
+    wins.forEach(id => {
+      if (!winState[id].open && !winState[id].minimized) return;
+      const btn = document.createElement('button');
+      btn.className = 'taskbar-task' + (winState[id].minimized ? '' : ' active');
+      btn.textContent = winTitles[id];
+      btn.onclick = () => {
+        if (winState[id].minimized) openWin(id);
+        else { minimizeWin(id); }
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  updateTaskbar();
+
+  // ===== CLOCK =====
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock-area').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 10000);
+
+  // ===== START MENU =====
+  let menuOpen = false;
+  function toggleStartMenu() {
+    menuOpen = !menuOpen;
+    document.getElementById('start-menu').classList.toggle('visible', menuOpen);
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#start-menu') && !e.target.closest('#start-btn')) {
+      menuOpen = false;
+      document.getElementById('start-menu').classList.remove('visible');
+    }
+  });
+
+  // ===== EASTER EGG =====
+  document.title = 'pranav.exe — welcome!!';
+  console.log('%c hi!! found the console :) — pvp6360@nyu.edu', 'color: #000080; font-family: monospace; font-size: 14px; background: #c0c0c0; padding: 4px;');
+</script>
 </body>
 </html>
